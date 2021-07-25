@@ -38,8 +38,7 @@ af_s1:addToggle("Mob Autofarm", nil, function(value)
 end)
 
 af_s1:addDropdown("Mob To Farm", {"GenericOni", "FrostyOni", "GenericSlayer", "Zenitsu"}, function(value)
-    toFarm = workspace[value]
-    workspace[player.Name].HumanoidRootPart.Position = toFarm.Position
+    workspace[player.Name].HumanoidRootPart.Position = workspace[value].PrimaryPart.Position
     print(toFarm)
 end)
 
@@ -47,6 +46,12 @@ af_s1:addSlider("Autofarm Speed", 0, 50, 100, function(value)
 end)
 
 af_s2:addToggle("Trinket TP Farm", nil, function(value)
+    local trinkets = workspace.Trinkets:GetChildren()
+
+    while value == true do
+        wait(.2)
+        workspace[player.Name].HumanoidRootPart.Position = trinkets[#trinkets].Position
+    end
 end)
 
 af_s2:addButton("Trinket Value Calculator: ", nil, function(value)
